@@ -2,11 +2,13 @@
 .test {
     display: flex;
     border: 3px solid black;
+    width: 1000px;
+    margin: 0 auto;
 }
 
 .flex-child {
     flex: 1;
-    background-color: cadetblue ;
+    background-color: LightSkyBlue ;
     height: 533px;
 }
 
