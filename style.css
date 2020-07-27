@@ -12,15 +12,15 @@ h2 {
     font-size: 30px;
 }
 
-main {
+/*main {
     margin: 0 auto;
     position: relative;
     padding: 0;
     background-color: darkgoldenrod;
     display: block;
-}
+} */
 
-canvas {
+#canvas {
     border: 5px solid #e9155f;
     margin: 0 auto;
     background-color: white;
