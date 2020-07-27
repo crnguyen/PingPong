@@ -68,7 +68,16 @@ ball = {
 
 function moveTheBall() {
     ball.x += ball.vx;
-	ball.y += ball.vy;
+    ball.y += ball.vy;
+    
+    if(ball.x + ball.vx > canvas.width-ball.r || ball.x + ball.vx < ball.r) {
+        ball.vx = -ball.vx;
+    }
+    if(ball.y + ball.vy > canvas.height-ball.r || ball.y + ball.vy < ball.r) {
+        ball.vy = -ball.vy;
+    }
+
+
 }
 
 
