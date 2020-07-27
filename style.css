@@ -1,22 +1,28 @@
-
-.gameboardContainer {
-    display: flex;
-    border: 3px solid black;
-    width: 1000px;
-    margin: 0 auto;
-}
-
-.flex-child {
-    flex: 1;
-    background-color: LightSkyBlue ;
-    height: 533px;
-}
-
-
-img {
-    height: 533px;
+body {
+    display: block;
+    text-align: center;
+    align-content: center;
 }
 
 h1 {
-    text-align: center;
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+main {
+    margin: 0 auto;
+    position: relative;
+    padding: 0;
+    background-color: darkgoldenrod;
+    display: block;
+}
+
+canvas {
+    border: 5px solid #e9155f;
+    margin: 0 auto;
+    background-color: white;
+    display: block;
 }
