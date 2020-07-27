@@ -1,15 +1,9 @@
-console.log("my js is linked");
-
-
+//console.log("my js is linked")
 document.addEventListener("DOMContentLoaded", () => {
-    // let paddle1;
-    // let paddle2;
     let ball = {};
     
     let canvas = document.getElementById("canvas");
     let ctx = canvas.getContext("2d");
-    // let height = canvas.height;
-    // let width = canvas.width;
 
 // const drawBox = (x, y, size, color) => {
 //         ctx.fillStyle = color;
@@ -33,9 +27,7 @@ let paddle1 = new Player(400, 1, 115, 33, "green");
 let paddle2 = new Player(400, 426, 115, 33, "blue");
 
 const gameLoop = () => {
-    //clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //display x,y coordinates of our hero onto the DOM
     paddle1.render(); 
     paddle2.render();
     ball.draw();
@@ -73,31 +65,39 @@ function moveTheBall() {
     }
 }
 
-// detect hit paddle to ball
 function detectHit () {
     if (ball.x + ball.vx > paddle1.x &&
         ball.x < paddle1.x + paddle1.width &&
         ball.y + ball.r > paddle1.y &&
         ball.y < paddle1.y + paddle1.height) {
+            //score++;
+            ball.vy = -ball.vy;
             console.log("hit");
-        }
-}
+}   if (ball.x + ball.vx > paddle2.x &&
+    ball.x < paddle2.x + paddle2.width &&
+    ball.y + ball.r > paddle2.y &&
+    ball.y < paddle2.y + paddle2.height) {
+        ball.vy = -ball.vy;
+        //score++
+        console.log("hit");
+} }
 detectHit();
+
 
 //create function that moves paddles using keys
 const movePaddles = e => {
     //console.log(e);
     //aconsole.log(e.keyCode);
    if (e.keyCode === 65 && canvas.width > 0) {
-       paddle1.x -= 5;
+       paddle1.x -= 10;
    } else if (e.keyCode === 68 && canvas.width > 0) {
-       paddle1.x += 5;
+       paddle1.x += 10;
    };
    
    if (e.keyCode === 65 && canvas.width > 0) {
-       paddle2.x -= 5;
+       paddle2.x -= 10;
    } else if (e.keyCode === 68 && canvas.width > 0) {
-       paddle2.x += 5;
+       paddle2.x += 10;
    }
    //requestAnimationFrame(movePaddles); ???
 }
