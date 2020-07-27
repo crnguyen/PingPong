@@ -31,8 +31,6 @@ function Player(x, y, width, height, color) {
 //call above function *
 let paddle1 = new Player(400, 1, 115, 33, "green");
 let paddle2 = new Player(400, 426, 115, 33, "blue");
-// paddle1.render();
-// paddle2.render();
 
 const gameLoop = () => {
     //clear the canvas
@@ -42,13 +40,10 @@ const gameLoop = () => {
     paddle2.render();
     ball.draw();
     moveTheBall();
+    detectHit();
 }
 
-//paddles appear on screen
-
 //create ball *
-
-
 ball = {
 	x: 100,
 	y: 100, 
@@ -76,17 +71,23 @@ function moveTheBall() {
     if(ball.y + ball.vy > canvas.height-ball.r || ball.y + ball.vy < ball.r) {
         ball.vy = -ball.vy;
     }
-
-
 }
 
+// detect hit paddle to ball
+function detectHit () {
+    if (ball.x + ball.vx > paddle1.x &&
+        ball.x < paddle1.x + paddle1.width &&
+        ball.y + ball.r > paddle1.y &&
+        ball.y < paddle1.y + paddle1.height) {
+            console.log("hit");
+        }
+}
+detectHit();
 
-//create function that allows paddles to be moved at the same time in the same direction
-
-//create function that registers mouseover to move the paddles
+//create function that moves paddles using keys
 const movePaddles = e => {
-    console.log(e);
-    console.log(e.keyCode);
+    //console.log(e);
+    //aconsole.log(e.keyCode);
    if (e.keyCode === 65 && canvas.width > 0) {
        paddle1.x -= 5;
    } else if (e.keyCode === 68 && canvas.width > 0) {
@@ -98,8 +99,7 @@ const movePaddles = e => {
    } else if (e.keyCode === 68 && canvas.width > 0) {
        paddle2.x += 5;
    }
-   //requestAnimationFrame(movePaddles);
-
+   //requestAnimationFrame(movePaddles); ???
 }
 document.addEventListener("keydown", movePaddles);
 //requestAnimationFrame(movePaddles);
