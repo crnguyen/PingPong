@@ -83,7 +83,7 @@ document.addEventListener("keydown", movePaddles);
 
 //create function that increases speed of ball after certain points/score
 
-let gamePlay = setInterval(gameLoop, 10);
+let gamePlay = setInterval(gameLoop, 1);
 
 })
 
