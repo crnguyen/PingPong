@@ -1,19 +1,15 @@
 console.log("my js is linked");
-mouse = {}
-let paddle1;
-let paddle2;
-let ball;
-
-let canvas = document.getElementById("canvas");
-//this.width = canvas.width;
-//this.height = canvas.height;
-
-let ctx = canvas.getContext("2d");
-let height = canvas.height;
-let width = canvas.width;
 
 
 document.addEventListener("DOMContentLoaded", () => {
+    // let paddle1;
+    // let paddle2;
+    // let ball;
+    
+    let canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext("2d");
+    // let height = canvas.height;
+    // let width = canvas.width;
 
 // const drawBox = (x, y, size, color) => {
 //         ctx.fillStyle = color;
@@ -35,42 +31,51 @@ function Player(x, y, width, height, color) {
 //call above function *
 let paddle1 = new Player(400, 1, 115, 33, "green");
 let paddle2 = new Player(400, 426, 115, 33, "blue");
+// paddle1.render();
+// paddle2.render();
+
+const gameLoop = () => {
+    console.log("loopin ");
+    //clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //display x,y coordinates of our hero onto the DOM
+    paddle1.render(); 
+    paddle2.render();
+}
 
 //paddles appear on screen
-paddle1.render();
-paddle2.render();
 
 //create ball *
-function update() {
-    ctx.beginPath();
-    ctx.arc(90, 90, 25, 0, 2 * Math.PI, true);
-    ctx.fillStyle = "black";
-    ctx.fill();
-}
-update();
-
+// function ball() {
+//     ctx.beginPath();
+//     ctx.arc(90, 90, 25, 0, 2 * Math.PI, true);
+//     ctx.fillStyle = "black";
+//     ctx.fill();
+// }
+// ball();
 //create function that allows paddles to be moved at the same time in the same direction
 
 //create function that registers mouseover to move the paddles
-canvas.addEventListener("mousemove", trackPosition, true);
-function trackPosition(e) {
-    mouse.x = e.pageX;
-    mouse.y = e.pageY;
+const movePaddles = e => {
+    console.log(e);
+    console.log(e.keyCode);
+   if (e.keyCode === 65 && canvas.width > 0) {
+       paddle1.x -= 5;
+   } else if (e.keyCode === 68 && canvas.width > 0) {
+       paddle1.x += 5;
+   };
+   
+   if (e.keyCode === 65 && canvas.width > 0) {
+       paddle2.x -= 5;
+   } else if (e.keyCode === 68 && canvas.width > 0) {
+       paddle2.x += 5;
+   }
 }
-function movePaddle() {
-
-    if(mouse.x && mouse.y) {
-		for(var i = 1; i < paddles.length; i++) {
-			p = paddles[i];
-			p.x = mouse.x - p.w/2;
-		}		
-	}
-}
-movePaddle();
+document.addEventListener("keydown", movePaddles);
 //create function that detects hit (paddle to ball) and reverses the ball in the opposite direction at an angle
 
 //create an explosion sound when paddle hits ball
-hit = document.getElementById("hit");
+//hit = document.getElementById("hit");
 
 //create function that keeps score
 
@@ -78,7 +83,9 @@ hit = document.getElementById("hit");
 
 //create function that increases speed of ball after certain points/score
 
-});
+let gamePlay = setInterval(gameLoop, 10);
+
+})
 
 
 
