@@ -1,5 +1,5 @@
 
-.test {
+.gameboardContainer {
     display: flex;
     border: 3px solid black;
     width: 1000px;
