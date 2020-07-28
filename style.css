@@ -48,7 +48,7 @@ h2 {
   }
 
 #canvas {
-    border: 5px solid #84DE02;
+    border: 5px solid white;
     margin: 0 auto;
     background-image: url("https://cdn.gamedevmarket.net/wp-content/uploads/20191203165405/b4869abd6b3fb22cba3635dab74b6c87.png");
     animation: infinite-shift-left 200s linear;
@@ -61,4 +61,7 @@ button {
     height: 50px;
     font-size: 20px;
     font-family:'Bangers', cursive;
+    background-color: white;
+    border: 5px solid white;
+    margin: 10px;
 }
