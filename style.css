@@ -2,14 +2,20 @@ body {
     display: block;
     text-align: center;
     align-content: center;
+    font-family:'Bangers', cursive;
+    background-color: black;
 }
 
 h1 {
-    font-size: 45px;
+    color: #fff;
+  text-align: center;
+  text-shadow: 0 0 10px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 30px #0073e6, 0 0 15px #0073e6;
+  font-size: 80px;
 }
 
 h2 {
     font-size: 30px;
+    color: white;
 }
 
 /*main {
@@ -21,7 +27,7 @@ h2 {
 } */
 
 #canvas {
-    border: 5px solid #e9155f;
+    border: 5px solid #84DE02;
     margin: 0 auto;
     background-color: white;
     display: block;
