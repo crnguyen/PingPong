@@ -27,6 +27,20 @@ let paddle1 = new Player(400, 1, 115, 33, "green");
 let paddle2 = new Player(400, 426, 115, 33, "blue");
 
 const gameLoop = () => {
+    window.onload = function() {
+        let imgHeight = 0;
+        let imgScrollSpeed = 10;
+        function loopImg() {
+            ctx.drawImage(img, 0, imgHeight);
+            ctx.drawImage(img, 0, imgHeight - canvas.height);
+            imgHeight =+ imgScrollSpeed;
+            if (imgHeight === canvas.height) {
+                img.Height = 0;
+                window.requestAnimationFrame(loop); 
+            }
+            loopImg();
+        }
+    }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     paddle1.render(); 
     paddle2.render();
@@ -102,6 +116,26 @@ const movePaddles = e => {
    //requestAnimationFrame(movePaddles); ???
 }
 document.addEventListener("keydown", movePaddles);
+
+
+let img = new Image();
+img.src = "https://ak.picdn.net/shutterstock/videos/16719199/thumb/1.jpg"
+// window.onload = function() {
+//     let imgHeight = 0;
+//     let imgScrollSpeed = 10;
+//     function loopImg() {
+//         ctx.drawImage(img, 0, imgHeight);
+//         ctx.drawImage(img, 0, imgHeight - canvas.height);
+//         imgHeight =+ imgScrollSpeed;
+//         if (imgHeight === canvas.height) {
+//             img.Height = 0;
+//             window.requestAnimationFrame(loop); 
+//         }
+//         loopImg();
+//     }
+// }
+
+
 //requestAnimationFrame(movePaddles);
 //create function that detects hit (paddle to ball) and reverses the ball in the opposite direction at an angle
 

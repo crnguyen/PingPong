@@ -37,9 +37,21 @@ h2 {
     display: block;
 } */
 
+  
+  @keyframes infinite-shift-left {
+    0% {
+      background-position: 100000px;
+    }
+    100% {
+      background-position: 0;
+    }
+  }
+
 #canvas {
     border: 5px solid #84DE02;
     margin: 0 auto;
-    background-image: url(https://ak.picdn.net/shutterstock/videos/16719199/thumb/1.jpg);
+    background-image: url("https://cdn.gamedevmarket.net/wp-content/uploads/20191203165405/b4869abd6b3fb22cba3635dab74b6c87.png");
+    animation: infinite-shift-left 200s linear;
+    background-size: contain;
     display: block;
 }
