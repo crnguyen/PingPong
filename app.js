@@ -16,11 +16,10 @@ modalClose.addEventListener("click", function () {
     modalBg.classList.remove("bg-active");
 })
 
-
-let ball = {};
+//let ball = {};
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
-let score = 0;
+let score = 1;
 let gameScore = document.getElementById("score");
 
 // const drawBox = (x, y, size, color) => {
@@ -40,7 +39,7 @@ function Player(x, y, width, height, color) {
         ctx.fillRect(this.x, this.y, this.width, this.height, this.color);
     }
 }
-//call above function *
+//calls above function *
 let paddle1 = new Player(400, 1, 115, 33, "green");
 let paddle2 = new Player(400, 426, 115, 33, "blue");
 
@@ -72,6 +71,7 @@ ball = {
 };
 
 function moveTheBall() {
+    //this is what gets the ball moving
     ball.x += ball.vx;
     ball.y += ball.vy;
     
@@ -80,36 +80,64 @@ function moveTheBall() {
         ball.vx = -ball.vx;
     }
     if(ball.y + ball.vy > canvas.height-ball.r || ball.y + ball.vy < ball.r) {
+        gameOver();
         console.log("you lose"); // this is where you lose and game stops //need to write gameOver function!!!!
-        ball.vy = -ball.vy;
+        //ball.vy = -ball.vy;ad
+        //ball stops moving!!
+        ball.x -= ball.vx;
+        ball.y -= ball.vy;
     }
 }
 
 function increaseScore() {
-    gameScore.innerHTML = score++;
+    gameScore.innerHTML = "Score: " +score++;
+}
+
+function displayLastScore() {
+    gameScore.innerHTML = "Game Over! Score: " +score;
 }
 
 function gameOver() {
+    //pop up modal that shows your score
+    //reset score to 0
+    displayLastScore();
+    document.removeEventListener("keydown", movePaddles);
+    //stop ball from moving
+}
 
+function pauseGame() {
+    //only if space key has been pressed
 }
 
 function detectHit () {
     if (ball.x + ball.vx > paddle1.x &&
-        ball.x < paddle1.x + paddle1.width &&
-        ball.y + ball.r > paddle1.y &&
-        ball.y < paddle1.y + paddle1.height) {
+        ball.x < paddle1.x + paddle1.width 
+        && ball.y + ball.r > paddle1.y &&
+        ball.y < paddle1.y + paddle1.height){
+            if (ball.y < 28) {
+                ball.y = 28;
+                console.log("HELLO");
+            }
             increaseScore();
             ball.vy = -ball.vy;
+            console.log("ball.vy", ball.vy);
             console.log("hit");
-}   if (ball.x + ball.vx > paddle2.x &&
+            console.log("----------");
+} 
+    else if (ball.x + ball.vx > paddle2.x &&
     ball.x < paddle2.x + paddle2.width &&
     ball.y + ball.r > paddle2.y &&
     ball.y < paddle2.y + paddle2.height) {
         ball.vy = -ball.vy;
         increaseScore();
+        console.log(ball.vy);
+        console.log(paddle2.height);
+        console.log(paddle2.width);
         console.log("hit");
-} }
-detectHit();
+}}
+//detectHit();
+
+
 
 
 //create function that moves paddles using keys
