@@ -21,6 +21,7 @@ let ball = {};
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let score = 0;
+let gameScore = document.getElementById("score");
 
 // const drawBox = (x, y, size, color) => {
 //         ctx.fillStyle = color;
@@ -85,11 +86,11 @@ function moveTheBall() {
 }
 
 function increaseScore() {
-    score++;
+    gameScore.innerHTML = score++;
 }
 
 function gameOver() {
-    
+
 }
 
 function detectHit () {
@@ -105,7 +106,7 @@ function detectHit () {
     ball.y + ball.r > paddle2.y &&
     ball.y < paddle2.y + paddle2.height) {
         ball.vy = -ball.vy;
-        increaseScore()
+        increaseScore();
         console.log("hit");
 } }
 detectHit();
