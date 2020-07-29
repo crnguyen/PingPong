@@ -54,12 +54,12 @@ const gameLoop = () => {
 
 //create ball *
 ball = {
-	x: 100,
-	y: 100, 
+	x: 400,
+	y: 34, 
 	r: 10,
 	c: "black",
-	vx: 4,
-	vy: 8,
+	vx: 6,
+	vy: 12,
 	
 	// Function for drawing ball on canvas
 	draw: function() {
@@ -75,11 +75,11 @@ function moveTheBall() {
     ball.x += ball.vx;
     ball.y += ball.vy;
     
-    if(ball.x + ball.vx > canvas.width-ball.r || ball.x + ball.vx < ball.r) {
+    if(ball.x + ball.vx > canvas.width - ball.r || ball.x + ball.vx < ball.r) {
         console.log("bounce off wall"); 
         ball.vx = -ball.vx;
     }
-    if(ball.y + ball.vy > canvas.height-ball.r || ball.y + ball.vy < ball.r) {
+    if(ball.y + ball.vy > canvas.height || ball.y + ball.vy < ball.r) {
         gameOver();
         console.log("you lose"); // this is where you lose and game stops //need to write gameOver function!!!!
         //ball.vy = -ball.vy;ad
@@ -91,6 +91,11 @@ function moveTheBall() {
 
 function increaseScore() {
     gameScore.innerHTML = "Score: " +score++;
+    if (score === 21) {
+        console.log("you win");
+        setInterval(function() {gameScore.innerHTML = "GAME OVER! YOU WIN!"},30);
+        gameOver();
+    }
 }
 
 function displayLastScore() {
@@ -100,7 +105,7 @@ function displayLastScore() {
 function gameOver() {
     //pop up modal that shows your score
     //reset score to 0
-    displayLastScore();
+    //displayLastScore();
     document.removeEventListener("keydown", movePaddles);
     //stop ball from moving
 }
@@ -151,15 +156,15 @@ const movePaddles = e => {
     //console.log(e);
     //console.log(e.keyCode);
    if (e.keyCode === 65 && canvas.width > 0) {
-       paddle1.x -= 10; // this number changes speed
+       paddle1.x -= 13; // this number changes speed
    } else if (e.keyCode === 68 && canvas.width > 0) {
-       paddle1.x += 10;
+       paddle1.x += 13;
    };
    
    if (e.keyCode === 65 && canvas.width > 0) {
-       paddle2.x -= 10;
+       paddle2.x -= 13;
    } else if (e.keyCode === 68 && canvas.width > 0) {
-       paddle2.x += 10;
+       paddle2.x += 13;
    }
    //requestAnimationFrame(movePaddles); ???
 }
