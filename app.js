@@ -116,7 +116,7 @@ function detectHit () {
         ball.y < paddle1.y + paddle1.height){
             if (ball.y < 28) {
                 ball.y = 28;
-                console.log("HELLO");
+                //console.log("HELLO");
             }
             increaseScore();
             ball.vy = -ball.vy;
@@ -128,12 +128,18 @@ function detectHit () {
     ball.x < paddle2.x + paddle2.width &&
     ball.y + ball.r > paddle2.y &&
     ball.y < paddle2.y + paddle2.height) {
-        ball.vy = -ball.vy;
+         if (ball.y > 420) {
+            ball.y = 420;
+            console.log("second hit ------");
+        }
         increaseScore();
-        console.log(ball.vy);
-        console.log(paddle2.height);
-        console.log(paddle2.width);
-        console.log("hit");
+        ball.vy = -ball.vy;
+        console.log("ball x:", ball.x);
+        console.log("ball y:", ball.y);
+        //console.log(ball.vy);
+        //console.log(paddle2.height);
+        //console.log(paddle2.width);
+        //console.log("hit");
 }}
 //detectHit();
 
