@@ -78,9 +78,10 @@ function moveTheBall() {
     if(ball.x + ball.vx > canvas.width - ball.r || ball.x + ball.vx < ball.r) {
         console.log("bounce off wall"); 
         ball.vx = -ball.vx;
-    }
-    if(ball.y + ball.vy > canvas.height || ball.y + ball.vy < ball.r) {
+    } else if(ball.y + ball.vy > canvas.height || ball.y + ball.vy < ball.r) {
         gameOver();
+        gameScore.innerHTML = "GAME OVER! YOU LOSE!";
+        clearInterval(gamePlay);
         console.log("you lose"); // this is where you lose and game stops //need to write gameOver function!!!!
         //ball.vy = -ball.vy;ad
         //ball stops moving!!
@@ -92,7 +93,7 @@ function moveTheBall() {
 function increaseScore() {
     gameScore.innerHTML = "Score: " +score++;
     if (score === 21) {
-        console.log("you win");
+        //console.log("you win");
         setInterval(function() {gameScore.innerHTML = "GAME OVER! YOU WIN!"},30);
         gameOver();
     }
@@ -103,15 +104,7 @@ function displayLastScore() {
 }
 
 function gameOver() {
-    //pop up modal that shows your score
-    //reset score to 0
-    //displayLastScore();
     document.removeEventListener("keydown", movePaddles);
-    //stop ball from moving
-}
-
-function pauseGame() {
-    //only if space key has been pressed
 }
 
 function detectHit () {
@@ -125,9 +118,9 @@ function detectHit () {
             }
             increaseScore();
             ball.vy = -ball.vy;
-            console.log("ball.vy", ball.vy);
-            console.log("hit");
-            console.log("----------");
+            //console.log("ball.vy", ball.vy);
+            //console.log("hit");
+            //console.log("----------");
 } 
     else if (ball.x + ball.vx > paddle2.x &&
     ball.x < paddle2.x + paddle2.width &&
@@ -135,25 +128,21 @@ function detectHit () {
     ball.y < paddle2.y + paddle2.height) {
          if (ball.y > 420) {
             ball.y = 420;
-            console.log("second hit ------");
+            //console.log("second hit ------");
         }
         increaseScore();
         ball.vy = -ball.vy;
-        console.log("ball x:", ball.x);
-        console.log("ball y:", ball.y);
+        //console.log("ball x:", ball.x);
+        //console.log("ball y:", ball.y);
         //console.log(ball.vy);
         //console.log(paddle2.height);
         //console.log(paddle2.width);
         //console.log("hit");
 }}
-//detectHit();
-
-
-
 
 //create function that moves paddles using keys
 const movePaddles = e => {
-    //console.log(e);
+    console.log(e);
     //console.log(e.keyCode);
    if (e.keyCode === 65 && canvas.width > 0) {
        paddle1.x -= 13; // this number changes speed
@@ -165,10 +154,20 @@ const movePaddles = e => {
        paddle2.x -= 13;
    } else if (e.keyCode === 68 && canvas.width > 0) {
        paddle2.x += 13;
-   }
+   };
    //requestAnimationFrame(movePaddles); ???
 }
 document.addEventListener("keydown", movePaddles);
+
+const pauseGame = e => {
+    if (e.keyCode === 32) {
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+        console.log("game pause");
+    };
+    
+}
+document.addEventListener("keydown", pauseGame);
 
 //create an explosion sound when paddle hits ball
 //hit = document.getElementById("hit");
