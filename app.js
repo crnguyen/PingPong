@@ -1,9 +1,26 @@
 //console.log("my js is linked")
 document.addEventListener("DOMContentLoaded", () => {
-    let ball = {};
-    
-    let canvas = document.getElementById("canvas");
-    let ctx = canvas.getContext("2d");
+
+//when this is pressed, start game
+let startGame = document.getElementById("startGame");
+document.addEventListener("click", startGame);
+
+let gameInstructions = document.querySelector(".modal-btn");
+let modalBg = document.querySelector(".modal-bg");
+gameInstructions.addEventListener("click", function () {
+    modalBg.classList.add("bg-active");
+});
+
+let modalClose = document.querySelector(".modal-close");
+modalClose.addEventListener("click", function () {
+    modalBg.classList.remove("bg-active");
+})
+
+
+let ball = {};
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+let score = 0;
 
 // const drawBox = (x, y, size, color) => {
 //         ctx.fillStyle = color;
@@ -27,20 +44,6 @@ let paddle1 = new Player(400, 1, 115, 33, "green");
 let paddle2 = new Player(400, 426, 115, 33, "blue");
 
 const gameLoop = () => {
-    window.onload = function() {
-        let imgHeight = 0;
-        let imgScrollSpeed = 10;
-        function loopImg() {
-            ctx.drawImage(img, 0, imgHeight);
-            ctx.drawImage(img, 0, imgHeight - canvas.height);
-            imgHeight =+ imgScrollSpeed;
-            if (imgHeight === canvas.height) {
-                img.Height = 0;
-                window.requestAnimationFrame(loop); 
-            }
-            loopImg();
-        }
-    }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     paddle1.render(); 
     paddle2.render();
@@ -72,11 +75,21 @@ function moveTheBall() {
     ball.y += ball.vy;
     
     if(ball.x + ball.vx > canvas.width-ball.r || ball.x + ball.vx < ball.r) {
+        console.log("bounce off wall"); 
         ball.vx = -ball.vx;
     }
     if(ball.y + ball.vy > canvas.height-ball.r || ball.y + ball.vy < ball.r) {
+        console.log("you lose"); // this is where you lose and game stops //need to write gameOver function!!!!
         ball.vy = -ball.vy;
     }
+}
+
+function increaseScore() {
+    score++;
+}
+
+function gameOver() {
+    
 }
 
 function detectHit () {
@@ -84,7 +97,7 @@ function detectHit () {
         ball.x < paddle1.x + paddle1.width &&
         ball.y + ball.r > paddle1.y &&
         ball.y < paddle1.y + paddle1.height) {
-            //score++;
+            increaseScore();
             ball.vy = -ball.vy;
             console.log("hit");
 }   if (ball.x + ball.vx > paddle2.x &&
@@ -92,7 +105,7 @@ function detectHit () {
     ball.y + ball.r > paddle2.y &&
     ball.y < paddle2.y + paddle2.height) {
         ball.vy = -ball.vy;
-        //score++
+        increaseScore()
         console.log("hit");
 } }
 detectHit();
@@ -101,9 +114,9 @@ detectHit();
 //create function that moves paddles using keys
 const movePaddles = e => {
     //console.log(e);
-    //aconsole.log(e.keyCode);
+    //console.log(e.keyCode);
    if (e.keyCode === 65 && canvas.width > 0) {
-       paddle1.x -= 10;
+       paddle1.x -= 10; // this number changes speed
    } else if (e.keyCode === 68 && canvas.width > 0) {
        paddle1.x += 10;
    };
@@ -116,28 +129,6 @@ const movePaddles = e => {
    //requestAnimationFrame(movePaddles); ???
 }
 document.addEventListener("keydown", movePaddles);
-
-
-let img = new Image();
-img.src = "https://ak.picdn.net/shutterstock/videos/16719199/thumb/1.jpg"
-// window.onload = function() {
-//     let imgHeight = 0;
-//     let imgScrollSpeed = 10;
-//     function loopImg() {
-//         ctx.drawImage(img, 0, imgHeight);
-//         ctx.drawImage(img, 0, imgHeight - canvas.height);
-//         imgHeight =+ imgScrollSpeed;
-//         if (imgHeight === canvas.height) {
-//             img.Height = 0;
-//             window.requestAnimationFrame(loop); 
-//         }
-//         loopImg();
-//     }
-// }
-
-
-//requestAnimationFrame(movePaddles);
-//create function that detects hit (paddle to ball) and reverses the ball in the opposite direction at an angle
 
 //create an explosion sound when paddle hits ball
 //hit = document.getElementById("hit");
