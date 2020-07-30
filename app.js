@@ -9,13 +9,26 @@ let modalBg = document.querySelector(".modal-bg");
 let modalClose = document.querySelector(".modal-close");
 let gameplay;
 
-//DOM
 
+//DOM
 document.addEventListener("DOMContentLoaded", () => {
 
-var audioPaddles = document.getElementById("audio");
-audioPaddles.play();
+function makePlayAgainButtonAppear() {
+    var button = document.createElement("button");
+    button.innerHTML = "Play Again?";
+    
+    button.addEventListener("click", function() {
+        gamePlay = setInterval(gameLoop, 50);
+        document.addEventListener("keydown", movePaddles);
+        resetScore();
+        audioBackground.play();
+        document.body.removeChild(button);
+        
+    });
+    document.body.appendChild(button);
+    }
 
+var audioPaddles = document.getElementById("audio");
 var audioWinner = document.getElementById("audioWin");
 var audioLoser = document.getElementById("audioLoser");
 var audioBackground = document.getElementById("audioBackground");
@@ -24,6 +37,7 @@ var audioBackground = document.getElementById("audioBackground");
 startGame.addEventListener("click", function() {
     audioBackground.play();
     gamePlay = setInterval(gameLoop, 50);
+    //gameScore.innerHTML = "Score: " +score++;
 });
 
 
@@ -36,7 +50,7 @@ modalClose.addEventListener("click", function () {
     modalBg.classList.remove("bg-active");
 })
 
-//create function to draw paddle *
+//create function to draw paddles *
 function Player(x, y, width, height, color) {
     this.x = x;
     this.y = y;
@@ -52,15 +66,14 @@ function Player(x, y, width, height, color) {
 let paddle1 = new Player(400, 1, 115, 33, "green");
 let paddle2 = new Player(400, 426, 115, 33, "blue");
 
-//create ball *
+//create ball/x and y coordinates/velocity
 ball = {
 	x: 400,
 	y: 34, 
 	r: 10,
 	c: "black",
 	vx: 4,
-	vy: 8,
-	
+	vy: 8,	
 	// Function for drawing ball on canvas
 	draw: function() {
 		ctx.beginPath();
@@ -70,10 +83,14 @@ ball = {
 	}
 };
 
+//this is what gets the ball moving
 function moveTheBall() {
-    //this is what gets the ball moving
     ball.x += ball.vx;
     ball.y += ball.vy;
+}
+
+function resetScore() {
+    gameScore.innerHTML = "Score: ";
 }
 
 function increaseScore() {
@@ -84,29 +101,32 @@ function increaseScore() {
         audioWinner.play();
         gameOver();
         clearInterval(gamePlay);
-    // } else if (score === 5) {
-    //    changeSpeedOfBall();
-     }
+     } 
 }
 
+//Makes keys unusable when game ends
 function gameOver() {
     document.removeEventListener("keydown", movePaddles);
+    makePlayAgainButtonAppear();
+
 }
 
-//
+//describes what happens when ball hits something
 function detectHit () {
+    //hits the left/right borders
     if(ball.x + ball.vx > canvas.width - ball.r || ball.x + ball.vx < 0) {
-        console.log("bounce off wall"); 
         ball.vx = -ball.vx;
     } else if(ball.y + ball.vy > canvas.height - ball.r || ball.y + ball.vy < 0) {
+        //hits top/bottom border
         gameOver();
         audioBackground.pause();
         audioLoser.play();
         gameScore.innerHTML = "GAME OVER! Better luck next time. You can always play again 😃";
         clearInterval(gamePlay);
-        //console.log("you lose"); // this is where you lose and game stops
+        //make "Play Again?" button appear
+        //If play again button is pressed - game loop starts again
     }
-
+    //hits top paddle
     if (ball.x + ball.vx > paddle1.x &&
         ball.x < paddle1.x + paddle1.width 
         && ball.y + ball.r > paddle1.y &&
@@ -117,7 +137,7 @@ function detectHit () {
             }
             increaseScore();
             ball.vy = -ball.vy;
-} 
+}   //hits bottom paddle
     else if (ball.x + ball.vx > paddle2.x &&
     ball.x < paddle2.x + paddle2.width &&
     ball.y + ball.r > paddle2.y &&
@@ -148,7 +168,7 @@ const movePaddles = e => {
 }
 document.addEventListener("keydown", movePaddles);
 
-
+//putting all functions together
 const gameLoop = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     paddle1.render(); 
