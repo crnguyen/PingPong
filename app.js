@@ -16,16 +16,10 @@ modalClose.addEventListener("click", function () {
     modalBg.classList.remove("bg-active");
 })
 
-//let ball = {};
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let score = 1;
 let gameScore = document.getElementById("score");
-
-// const drawBox = (x, y, size, color) => {
-//         ctx.fillStyle = color;
-//         ctx.fillRect(x, y, size, size);
-// }
 
 //create function to draw paddle *
 function Player(x, y, width, height, color) {
@@ -50,6 +44,7 @@ const gameLoop = () => {
     ball.draw();
     moveTheBall();
     detectHit();
+    //changeSpeedOfBall();
 }
 
 //create ball *
@@ -58,8 +53,8 @@ ball = {
 	y: 34, 
 	r: 10,
 	c: "black",
-	vx: 6,
-	vy: 12,
+	vx: 4,
+	vy: 8,
 	
 	// Function for drawing ball on canvas
 	draw: function() {
@@ -78,15 +73,14 @@ function moveTheBall() {
     if(ball.x + ball.vx > canvas.width - ball.r || ball.x + ball.vx < ball.r) {
         console.log("bounce off wall"); 
         ball.vx = -ball.vx;
-    } else if(ball.y + ball.vy > canvas.height || ball.y + ball.vy < ball.r) {
+    } else if(ball.y + ball.vy > canvas.height - ball.r || ball.y + ball.vy < ball.r) {
         gameOver();
         gameScore.innerHTML = "GAME OVER! YOU LOSE!";
         clearInterval(gamePlay);
-        console.log("you lose"); // this is where you lose and game stops //need to write gameOver function!!!!
-        //ball.vy = -ball.vy;ad
+        //console.log("you lose"); // this is where you lose and game stops
         //ball stops moving!!
-        ball.x -= ball.vx;
-        ball.y -= ball.vy;
+        // ball.x -= ball.vx;
+        // ball.y -= ball.vy;
     }
 }
 
@@ -96,11 +90,9 @@ function increaseScore() {
         //console.log("you win");
         setInterval(function() {gameScore.innerHTML = "GAME OVER! YOU WIN!"},30);
         gameOver();
+    } else if (score === 10) {
+        changeSpeedOfBall();
     }
-}
-
-function displayLastScore() {
-    gameScore.innerHTML = "Game Over! Score: " +score;
 }
 
 function gameOver() {
@@ -132,13 +124,17 @@ function detectHit () {
         }
         increaseScore();
         ball.vy = -ball.vy;
-        //console.log("ball x:", ball.x);
-        //console.log("ball y:", ball.y);
-        //console.log(ball.vy);
-        //console.log(paddle2.height);
-        //console.log(paddle2.width);
-        //console.log("hit");
+        
 }}
+
+function changeSpeedOfBall() {
+    if(ball.vx) {
+        ball.vx = 8;
+    }
+    if (ball.vy) {
+        ball.vy = 15;
+    }
+    };
 
 //create function that moves paddles using keys
 const movePaddles = e => {
@@ -155,31 +151,10 @@ const movePaddles = e => {
    } else if (e.keyCode === 68 && canvas.width > 0) {
        paddle2.x += 13;
    };
-   //requestAnimationFrame(movePaddles); ???
 }
 document.addEventListener("keydown", movePaddles);
 
-const pauseGame = e => {
-    if (e.keyCode === 32) {
-        ball.x += ball.vx;
-        ball.y += ball.vy;
-        console.log("game pause");
-    };
-    
-}
-document.addEventListener("keydown", pauseGame);
-
-//create an explosion sound when paddle hits ball
-//hit = document.getElementById("hit");
-
-//create function that keeps score
-
-//create function that changes the score/h2 - score id
-
-//create function that increases speed of ball after certain points/score
-
 let gamePlay = setInterval(gameLoop, 50);
-
 })
 
 

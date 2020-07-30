@@ -53,6 +53,7 @@ h2 {
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s opacity 0.5s;
+    text-align: left;
 }
 
 .bg-active {
@@ -85,6 +86,8 @@ h2 {
     right: 10px;
     font-weight: bold;
     font-size: 24px;
+    cursor: pointer;
+    text-align: left;
 }
   
   @keyframes infinite-shift-left {
