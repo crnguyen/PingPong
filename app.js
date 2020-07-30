@@ -9,11 +9,7 @@ let modalBg = document.querySelector(".modal-bg");
 let modalClose = document.querySelector(".modal-close");
 let gameplay;
 
-//
-let gameState = {
-    gameRunning: false,
-};
-
+//DOM
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -23,7 +19,8 @@ audioPaddles.play();
 var audioWinner = document.getElementById("audioWin");
 var audioLoser = document.getElementById("audioLoser");
 
-startGame.addEventListener("click", function () {
+//initialize game upon pressing Start Game button
+startGame.addEventListener("click", function() {
     gamePlay = setInterval(gameLoop, 50);
 });
 
@@ -73,9 +70,6 @@ ball = {
 
 function moveTheBall() {
     //this is what gets the ball moving
-    if (gameState.gameRunning === false) {
-        gameState.gameRunning = true;
-    };
     ball.x += ball.vx;
     ball.y += ball.vy;
 }
@@ -97,6 +91,7 @@ function gameOver() {
     document.removeEventListener("keydown", movePaddles);
 }
 
+//
 function detectHit () {
     if(ball.x + ball.vx > canvas.width - ball.r || ball.x + ball.vx < 0) {
         console.log("bounce off wall"); 
@@ -104,7 +99,7 @@ function detectHit () {
     } else if(ball.y + ball.vy > canvas.height - ball.r || ball.y + ball.vy < 0) {
         gameOver();
         audioLoser.play();
-        gameScore.innerHTML = "GAME OVER! YOU LOSE!";
+        gameScore.innerHTML = "GAME OVER! Better luck next time. You can always play again 😃";
         clearInterval(gamePlay);
         //console.log("you lose"); // this is where you lose and game stops
     }
@@ -159,7 +154,6 @@ const gameLoop = () => {
     moveTheBall();
     detectHit();
 }
-
 
 })
 
