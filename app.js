@@ -8,23 +8,23 @@ let gameInstructions = document.querySelector(".modal-btn");
 let modalBg = document.querySelector(".modal-bg");
 let modalClose = document.querySelector(".modal-close");
 let gameplay;
+let button;
 
 
 //DOM
 document.addEventListener("DOMContentLoaded", () => {
 
-function makePlayAgainButtonAppear() {
-    var button = document.createElement("button");
-    button.innerHTML = "Play Again?";
-    
-    button.addEventListener("click", function() {
-        gamePlay = setInterval(gameLoop, 50);
-        document.addEventListener("keydown", movePaddles);
-        resetScore();
-        audioBackground.play();
-        document.body.removeChild(button);
-        
-    });
+button = document.createElement("button");
+button.innerHTML = "Play Again?";
+
+function makePlayAgainButtonAppear() { 
+        button.addEventListener("click", function() {
+            location.reload();
+        // gamePlay = setInterval(gameLoop, 50);
+        // document.addEventListener("keydown", movePaddles);
+        // audioBackground.play();
+        document.body.removeChild(button);  
+    }); 
     document.body.appendChild(button);
     }
 
@@ -89,26 +89,22 @@ function moveTheBall() {
     ball.y += ball.vy;
 }
 
-function resetScore() {
-    gameScore.innerHTML = "Score: ";
-}
-
 function increaseScore() {
     gameScore.innerHTML = "Score: " +score++;
     if (score === 11) {
+        //makePlayAgainButtonAppear();
         //console.log("you win");
-        setInterval(function() {gameScore.innerHTML = "GAME OVER! YOU WIN!"},30);
+        gameScore.innerHTML = "GAME OVER! YOU WIN!";
         audioWinner.play();
         gameOver();
         clearInterval(gamePlay);
+        makePlayAgainButtonAppear();
      } 
 }
 
 //Makes keys unusable when game ends
 function gameOver() {
     document.removeEventListener("keydown", movePaddles);
-    makePlayAgainButtonAppear();
-
 }
 
 //describes what happens when ball hits something
@@ -117,6 +113,7 @@ function detectHit () {
     if(ball.x + ball.vx > canvas.width - ball.r || ball.x + ball.vx < 0) {
         ball.vx = -ball.vx;
     } else if(ball.y + ball.vy > canvas.height - ball.r || ball.y + ball.vy < 0) {
+        makePlayAgainButtonAppear();
         //hits top/bottom border
         gameOver();
         audioBackground.pause();
