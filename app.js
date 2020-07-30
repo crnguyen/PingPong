@@ -1,16 +1,30 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let score = 1;
+let newScore = " ";
 let gameScore = document.getElementById("score");
 let startGame = document.getElementById("startGame");
 let gameInstructions = document.querySelector(".modal-btn");
 let modalBg = document.querySelector(".modal-bg");
 let modalClose = document.querySelector(".modal-close");
 
+//
+let gameState = {
+    gameRunning: false,
+};
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
+var audioPaddles = document.getElementById("audio");
+audioPaddles.play();
+
+var audioWinner = document.getElementById("audioWin");
+var audioLoser = document.getElementById("audioLoser");
+
+
 startGame.addEventListener("click", moveTheBall);
+
 
 //modal
 gameInstructions.addEventListener("click", function () {
@@ -57,6 +71,9 @@ ball = {
 
 function moveTheBall() {
     //this is what gets the ball moving
+    if (gameState.gameRunning === false) {
+        gameState.gameRunning = true;
+    };
     ball.x += ball.vx;
     ball.y += ball.vy;
 }
@@ -66,6 +83,7 @@ function increaseScore() {
     if (score === 11) {
         //console.log("you win");
         setInterval(function() {gameScore.innerHTML = "GAME OVER! YOU WIN!"},30);
+        audioWinner.play();
         gameOver();
         clearInterval(gamePlay);
     // } else if (score === 5) {
@@ -83,6 +101,7 @@ function detectHit () {
         ball.vx = -ball.vx;
     } else if(ball.y + ball.vy > canvas.height - ball.r || ball.y + ball.vy < 0) {
         gameOver();
+        audioLoser.play();
         gameScore.innerHTML = "GAME OVER! YOU LOSE!";
         clearInterval(gamePlay);
         //console.log("you lose"); // this is where you lose and game stops
@@ -92,6 +111,7 @@ function detectHit () {
         ball.x < paddle1.x + paddle1.width 
         && ball.y + ball.r > paddle1.y &&
         ball.y < paddle1.y + paddle1.height){
+            audioPaddles.play();
             if (ball.y > 28) {
                 ball.y = 28;
             }
@@ -102,6 +122,7 @@ function detectHit () {
     ball.x < paddle2.x + paddle2.width &&
     ball.y + ball.r > paddle2.y &&
     ball.y < paddle2.y + paddle2.height) {
+        audioPaddles.play();
          if (ball.y > 420) {
             ball.y = 420;
         }
