@@ -18,9 +18,11 @@ audioPaddles.play();
 
 var audioWinner = document.getElementById("audioWin");
 var audioLoser = document.getElementById("audioLoser");
+var audioBackground = document.getElementById("audioBackground");
 
 //initialize game upon pressing Start Game button
 startGame.addEventListener("click", function() {
+    audioBackground.play();
     gamePlay = setInterval(gameLoop, 50);
 });
 
@@ -98,6 +100,7 @@ function detectHit () {
         ball.vx = -ball.vx;
     } else if(ball.y + ball.vy > canvas.height - ball.r || ball.y + ball.vy < 0) {
         gameOver();
+        audioBackground.pause();
         audioLoser.play();
         gameScore.innerHTML = "GAME OVER! Better luck next time. You can always play again 😃";
         clearInterval(gamePlay);
