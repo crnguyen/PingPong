@@ -7,6 +7,7 @@ let startGame = document.getElementById("startGame");
 let gameInstructions = document.querySelector(".modal-btn");
 let modalBg = document.querySelector(".modal-bg");
 let modalClose = document.querySelector(".modal-close");
+let gameplay;
 
 //
 let gameState = {
@@ -22,8 +23,9 @@ audioPaddles.play();
 var audioWinner = document.getElementById("audioWin");
 var audioLoser = document.getElementById("audioLoser");
 
-
-startGame.addEventListener("click", moveTheBall);
+startGame.addEventListener("click", function () {
+    gamePlay = setInterval(gameLoop, 50);
+});
 
 
 //modal
@@ -158,7 +160,7 @@ const gameLoop = () => {
     detectHit();
 }
 
-let gamePlay = setInterval(gameLoop, 50);
+
 })
 
 
