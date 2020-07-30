@@ -32,14 +32,6 @@ h2 {
     font-family: 'Raleway', sans-serif;
 }
 
-/*main {
-    margin: 0 auto;
-    position: relative;
-    padding: 0;
-    background-color: darkgoldenrod;
-    display: block;
-} */
-
 .modal-bg {
     position: fixed;
     top: 0;
@@ -129,7 +121,6 @@ button {
 }
 
 @media only screen and (min-width : 185px) and (max-width : 1000px) {
-    /* Header */
     body {
         width: 100%;
         float: none;
@@ -161,7 +152,6 @@ button {
         height: 100%;
         font-size: 15px;
     }
-
 }
 
 

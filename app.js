@@ -9,6 +9,10 @@ let modalBg = document.querySelector(".modal-bg");
 let modalClose = document.querySelector(".modal-close");
 let gameplay;
 let button;
+let audioPaddles = document.getElementById("audio");
+let audioWinner = document.getElementById("audioWin");
+let audioLoser = document.getElementById("audioLoser");
+let audioBackground = document.getElementById("audioBackground");
 
 
 //DOM
@@ -27,11 +31,6 @@ function makePlayAgainButtonAppear() {
     }); 
     document.body.appendChild(button);
     }
-
-var audioPaddles = document.getElementById("audio");
-var audioWinner = document.getElementById("audioWin");
-var audioLoser = document.getElementById("audioLoser");
-var audioBackground = document.getElementById("audioBackground");
 
 //initialize game upon pressing Start Game button
 startGame.addEventListener("click", function() {
@@ -120,8 +119,6 @@ function detectHit () {
         audioLoser.play();
         gameScore.innerHTML = "GAME OVER! Better luck next time. You can always play again 😃";
         clearInterval(gamePlay);
-        //make "Play Again?" button appear
-        //If play again button is pressed - game loop starts again
     }
     //hits top paddle
     if (ball.x + ball.vx > paddle1.x &&
