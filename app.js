@@ -13,7 +13,6 @@ let audioWinner = document.getElementById("audioWin");
 let audioLoser = document.getElementById("audioLoser");
 let audioBackground = document.getElementById("audioBackground");
 
-
 //DOM
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -37,7 +36,6 @@ startGame.addEventListener("click", function() {
     gamePlay = setInterval(gameLoop, 50);
     //gameScore.innerHTML = "Score: " +score++;
 });
-
 
 //modal
 gameInstructions.addEventListener("click", function () {
@@ -89,8 +87,7 @@ function moveTheBall() {
 
 function increaseScore() {
     gameScore.innerHTML = "Score: " +score++;
-    if (score === 11) {
-        //makePlayAgainButtonAppear();
+    if (score === 21) {
         //console.log("you win");
         gameScore.innerHTML = "GAME OVER! YOU WIN!";
         audioWinner.play();
@@ -99,12 +96,10 @@ function increaseScore() {
         makePlayAgainButtonAppear();
      } 
 }
-
 //Makes keys unusable when game ends
 function gameOver() {
     document.removeEventListener("keydown", movePaddles);
 }
-
 //describes what happens when ball hits something
 function detectHit () {
     //hits the left/right borders
