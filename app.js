@@ -18,23 +18,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 button = document.createElement("button");
 button.innerHTML = "Play Again?";
+body = document.querySelector(".buttons");
 
 function makePlayAgainButtonAppear() { 
         button.addEventListener("click", function() {
-            location.reload();
+        location.reload();
         // gamePlay = setInterval(gameLoop, 50);
         // document.addEventListener("keydown", movePaddles);
         // audioBackground.play();
-        document.body.removeChild(button);  
+        body.removeChild(button);  
     }); 
-    document.body.appendChild(button);
+    body.appendChild(button);
     }
 
 //initialize game upon pressing Start Game button
 startGame.addEventListener("click", function() {
+    hideStartButton();
     audioBackground.play();
-    gamePlay = setInterval(gameLoop, 50);
-    //gameScore.innerHTML = "Score: " +score++;
+    gamePlay = setInterval(gameLoop, 35);
 });
 
 //modal
@@ -85,11 +86,17 @@ function moveTheBall() {
     ball.y += ball.vy;
 }
 
+function hideStartButton() {
+    startGame.disabled = true;
+    //startGame.style.visibility = "hidden";
+}
+
 function increaseScore() {
     gameScore.innerHTML = "Score: " +score++;
     if (score === 21) {
         //console.log("you win");
         gameScore.innerHTML = "GAME OVER! YOU WIN!";
+        hideStartButton();
         audioWinner.play();
         gameOver();
         clearInterval(gamePlay);
@@ -103,10 +110,11 @@ function gameOver() {
 //describes what happens when ball hits something
 function detectHit () {
     //hits the left/right borders
-    if(ball.x + ball.vx > canvas.width - ball.r || ball.x + ball.vx < 0) {
+    if(ball.x + ball.vx > canvas.width - ball.r || ball.x + ball.vx < ball.r) {
         ball.vx = -ball.vx;
-    } else if(ball.y + ball.vy > canvas.height - ball.r || ball.y + ball.vy < 0) {
+    } else if(ball.y + ball.vy > canvas.height - ball.r || ball.y + ball.vy < ball.r) {
         makePlayAgainButtonAppear();
+        hideStartButton();
         //hits top/bottom border
         gameOver();
         audioBackground.pause();
@@ -120,8 +128,8 @@ function detectHit () {
         && ball.y + ball.r > paddle1.y &&
         ball.y < paddle1.y + paddle1.height){
             audioPaddles.play();
-            if (ball.y > 28) {
-                ball.y = 28;
+            if (ball.y > 27) {
+                ball.y = 27;
             }
             increaseScore();
             ball.vy = -ball.vy;
@@ -143,15 +151,15 @@ const movePaddles = e => {
     console.log(e);
     //console.log(e.keyCode);
    if (e.keyCode === 65 && canvas.width > 0) {
-       paddle1.x -= 13; // this number changes speed
+       paddle1.x -= 14; // this number changes speed
    } else if (e.keyCode === 68 && canvas.width > 0) {
-       paddle1.x += 13;
+       paddle1.x += 14;
    };
    
    if (e.keyCode === 65 && canvas.width > 0) {
-       paddle2.x -= 13;
+       paddle2.x -= 14;
    } else if (e.keyCode === 68 && canvas.width > 0) {
-       paddle2.x += 13;
+       paddle2.x += 14;
    };
 }
 document.addEventListener("keydown", movePaddles);
