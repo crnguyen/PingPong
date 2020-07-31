@@ -194,7 +194,7 @@ While I'm definitely happy with the progress, I do have a couple features of the
 3. Find a way to have a smooother animation for ball and paddle movements
 4. Set up game for mobile users
 5. Build a modal that displays latest score upon winning or losing 
-(adding onto this as I think of more ideas!)
+- (adding onto this as I think of more ideas!)
 
 
 
