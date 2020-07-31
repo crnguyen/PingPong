@@ -95,7 +95,7 @@ function increaseScore() {
     gameScore.innerHTML = "Score: " +score++;
     if (score === 21) {
         //console.log("you win");
-        gameScore.innerHTML = "GAME OVER! YOU WIN!";
+        gameScore.innerHTML = "GAME OVER! YOU WIN! \n Score: 20";
         hideStartButton();
         audioWinner.play();
         gameOver();

@@ -14,9 +14,8 @@ For this particular game, I added movements to control two paddles at the same t
 - Github
 
 ## LINK TO MY GAME 
-https://crnguyen.github.io/Project_1/
-Feedback/critiques are welcome!
-(Go easy on me I'm just a beginner)
+- https://crnguyen.github.io/Project_1/
+- Feedback/critiques are welcome! (Go easy on me I'm just a beginner)
 
 ## APPROACH
 The first 2-3 days was spent tackling the html/css of my game and planning the overall structure and functionality of my paddles and ball. This is where I solidified how the game would look and act because I wanted to make a decision and stick with it early on. The bulk of the week was spent building the Javascript portion, which is surprisingly what I enjoyed the most. There's just so many things you can do with it even though certain concepts may be hard to grasp. The final days were all about fixing any bugs (there were many!) that popped up and adding in any last minute aesthetically pleasing CSS.
@@ -134,6 +133,7 @@ function detectHit () {
         ball.vx = -ball.vx;
     } else if(ball.y + ball.vy > canvas.height - ball.r || ball.y + ball.vy < 0) {
         makePlayAgainButtonAppear();
+        hideStartButton();
         //hits top/bottom border
         gameOver();
         audioBackground.pause();
@@ -169,9 +169,9 @@ function detectHit () {
 Lastly I created a game loop function to call all of my functions that I needed to loop, and have it initialize only when a button is pressed.
 ```Javascript
 startGame.addEventListener("click", function() {
+    hideStartButton();
     audioBackground.play();
-    gamePlay = setInterval(gameLoop, 50);
-    //gameScore.innerHTML = "Score: " +score++;
+    gamePlay = setInterval(gameLoop, 35);
 });
 
 const gameLoop = () => {
@@ -186,6 +186,15 @@ const gameLoop = () => {
 
 ## Blockers
 The major blocker that I had was whenever the ball hit the paddle from the side, it went through the paddle, got stuck, and increased the score. I fixed this by creating a gameOver function that disables the paddle key movements whenever a losing condition is met. At this point, the ball wouldn't be able to hit the sides of the paddles. This worked well until I ran into another issue. On rare occasions I was able to hit the ball from the corners of the paddle and the same problem occured. The fix for this was console.log-ing the y coordinates of paddle1 and paddle2 each time the ball hit the corners of the paddle. Once I figured out the coordinate, I was able to write a nested if statement that says if ball.y is greater than the y coordinate of the paddle where the ball kept getting stuck at, change the value of ball.y to equal that y coordinate. I went through the same process of trial and error for paddle2.
+
+## WHAT WOULD I ADD?
+While I'm definitely happy with the progress, I do have a couple features of the game that I'd like to change or add onto in the future.
+1. Have different modes, easy/medium/hard
+2. Build some obstacles on the canvas that show up randomly throughout the game
+3. Find a way to have a smooother animation for ball and paddle movements
+4. Set up game for mobile users
+5. Build a modal that displays latest score upon winning or losing 
+(adding onto this as I think of more ideas!)
 
 
 
