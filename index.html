@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Ping Pong!</title>
 </head>
 <body>
     <h1>Ping Pong!</h1>
@@ -19,7 +19,7 @@
     <div class="modal-bg">
         <div class="modal">
             <h3 class="titleInstructions">Instructions</h3>
-            <p>Use A key to move your paddle right. D key to move left. Press space bar to pause the game. 
+            <p>Use A key to move your paddle right. D key to move left.
                 <br> 
                 <br>
                 Ball can bounce off of left and right walls, but if it hits top or bottom walls you lose the game.
@@ -33,24 +33,14 @@
     <audio id="audioLoser" src="loser.wav" autoplay="false" ></audio>
     <audio id="audioBackground" src="background.wav" autoplay="false" ></audio>
 
-    
-
     <br>
     <br>
     <main>
         <canvas id="canvas" width="850" height="460"></canvas>
-
-        <div id=”paddle1">
-        </div>
-
-        <div id=”paddle2">
-        </div>
-
-        <div id=”ball">
-        </div>
-
+        <div id=”paddle1"></div>
+        <div id=”paddle2"></div>
+        <div id=”ball"></div>
     </main>
-</div>
 
     <script src="app.js"></script>
 </body>

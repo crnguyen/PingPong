@@ -1,7 +1,6 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let score = 1;
-let newScore = " ";
 let gameScore = document.getElementById("score");
 let startGame = document.getElementById("startGame");
 let gameInstructions = document.querySelector(".modal-btn");
