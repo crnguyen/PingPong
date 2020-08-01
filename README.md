@@ -15,7 +15,7 @@ For this particular game, I added movements to control two paddles at the same t
 
 ## LINK TO MY GAME 
 - https://crnguyen.github.io/Project_1/
-- Feedback/critiques are welcome! (Go easy on me I'm just a beginner)
+- Feedback/critiques are welcome! 
 
 ## APPROACH
 The first 2-3 days was spent tackling the html/css of my game and planning the overall structure and functionality of my paddles and ball. This is where I solidified how the game would look and act because I wanted to make a decision and stick with it early on. The bulk of the week was spent building the Javascript portion, which is surprisingly what I enjoyed the most. There's just so many things you can do with it even though certain concepts may be hard to grasp. The final days were all about fixing any bugs (there were many!) that popped up and adding in any last minute aesthetically pleasing CSS.
@@ -147,7 +147,7 @@ function detectHit () {
         && ball.y + ball.r > paddle1.y &&
         ball.y < paddle1.y + paddle1.height){
             audioPaddles.play();
-            if (ball.y > 28) {
+            if (ball.y > 28) {            
                 ball.y = 28;
             }
             increaseScore();
