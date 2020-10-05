@@ -1,4 +1,4 @@
-# Project 1 - Ping Pong!
+# Ping Pong!
 
 ## SUMMARY
 I chose to build a game of ping pong/table tennis for my first project. I wanted to go with something familiar and something that I could add my own creative flair to. As many people know, the main goal of the game is to use a paddle(s) to hit the ball back and forth, and  prevent it from hitting a wall. 
