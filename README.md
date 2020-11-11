@@ -14,7 +14,7 @@ For this particular game, I added movements to control two paddles at the same t
 - Github
 
 ## LINK TO MY GAME 
-- https://crnguyen.github.io/Project_1/
+- https://crnguyen.github.io/PingPong/
 - Feedback/critiques are welcome! 
 
 ## APPROACH
