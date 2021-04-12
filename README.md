@@ -1,4 +1,4 @@
-# Project 1 - Ping Pong!
+# Ping Pong!
 
 ## SUMMARY
 I chose to build a game of ping pong/table tennis for my first project. I wanted to go with something familiar and something that I could add my own creative flair to. As many people know, the main goal of the game is to use a paddle(s) to hit the ball back and forth, and  prevent it from hitting a wall. 
@@ -14,7 +14,7 @@ For this particular game, I added movements to control two paddles at the same t
 - Github
 
 ## LINK TO MY GAME 
-- https://crnguyen.github.io/Project_1/
+- https://crnguyen.github.io/PingPong/
 - Feedback/critiques are welcome! 
 
 ## APPROACH
@@ -194,6 +194,7 @@ While I'm definitely happy with the progress, I do have a couple features of the
 3. Find a way to have a smooother animation for ball and paddle movements
 4. Set up game for mobile users
 5. Build a modal that displays latest score upon winning or losing 
+6. Fix responsiveness of paddle and ball movements
 - (adding onto this as I think of more ideas!)
 
 
