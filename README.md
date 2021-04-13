@@ -1,9 +1,14 @@
 # Ping Pong!
 
+## Deployed Game
+- https://crnguyen.github.io/PingPong/
+## Live
+![GIF](hhttps://media.giphy.com/media/3aNaQVU6Y0TIk9kgcT/giphy.gif)
+
 ## SUMMARY
 I chose to build a game of ping pong/table tennis for my first project. I wanted to go with something familiar and something that I could add my own creative flair to. As many people know, the main goal of the game is to use a paddle(s) to hit the ball back and forth, and  prevent it from hitting a wall. 
 
-#### *Game Play*
+#### *GAME PLAY*
 For this particular game, I added movements to control two paddles at the same time, using the A and D keys to move (A: left, D: right). I set up an extremely easy win condition: 20 points and you win, but this can be changed if you want a more difficult game. If the ball hits the side of the wall that you're on, you lose. The score increases by 1, each time a paddle is hit. I also added sound effects when you earn a point, win, or lose. 
 
 ## TECHNOLOGIES USED
@@ -12,10 +17,6 @@ For this particular game, I added movements to control two paddles at the same t
 - CSS
 - VS Code
 - Github
-
-## LINK TO MY GAME 
-- https://crnguyen.github.io/PingPong/
-- Feedback/critiques are welcome! 
 
 ## APPROACH
 The first 2-3 days was spent tackling the html/css of my game and planning the overall structure and functionality of my paddles and ball. This is where I solidified how the game would look and act because I wanted to make a decision and stick with it early on. The bulk of the week was spent building the Javascript portion, which is surprisingly what I enjoyed the most. There's just so many things you can do with it even though certain concepts may be hard to grasp. The final days were all about fixing any bugs (there were many!) that popped up and adding in any last minute aesthetically pleasing CSS.
