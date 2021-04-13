@@ -3,7 +3,7 @@
 ## Deployed Game
 - https://crnguyen.github.io/PingPong/
 ## Live
-![GIF](hhttps://media.giphy.com/media/3aNaQVU6Y0TIk9kgcT/giphy.gif)
+![GIF](https://media.giphy.com/media/3aNaQVU6Y0TIk9kgcT/giphy.gif)
 
 ## SUMMARY
 I chose to build a game of ping pong/table tennis for my first project. I wanted to go with something familiar and something that I could add my own creative flair to. As many people know, the main goal of the game is to use a paddle(s) to hit the ball back and forth, and  prevent it from hitting a wall. 
