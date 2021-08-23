@@ -21,7 +21,6 @@ function makePlayAgainButtonAppear() {
         location.reload();
         // gamePlay = setInterval(gameLoop, 50);
         // document.addEventListener("keydown", movePaddles);
-        // audioBackground.play();
         body.removeChild(button);  
     }); 
     body.appendChild(button);
