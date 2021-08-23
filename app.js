@@ -8,10 +8,10 @@ let modalBg = document.querySelector(".modal-bg");
 let modalClose = document.querySelector(".modal-close");
 let gameplay;
 let button;
-let audioPaddles = document.getElementById("audio");
-let audioWinner = document.getElementById("audioWin");
-let audioLoser = document.getElementById("audioLoser");
-let audioBackground = document.getElementById("audioBackground");
+// let audioPaddles = document.getElementById("audio");
+// let audioWinner = document.getElementById("audioWin");
+// let audioLoser = document.getElementById("audioLoser");
+// let audioBackground = document.getElementById("audioBackground");
 
 //DOM
 document.addEventListener("DOMContentLoaded", () => {
@@ -34,7 +34,6 @@ function makePlayAgainButtonAppear() {
 //initialize game upon pressing Start Game button
 startGame.addEventListener("click", function() {
     hideStartButton();
-    audioBackground.play();
     gamePlay = setInterval(gameLoop, 35);
 });
 
@@ -97,7 +96,6 @@ function increaseScore() {
         //console.log("you win");
         gameScore.innerHTML = "GAME OVER! YOU WIN! \n Score: 20";
         hideStartButton();
-        audioWinner.play();
         gameOver();
         clearInterval(gamePlay);
         makePlayAgainButtonAppear();
@@ -117,8 +115,6 @@ function detectHit () {
         hideStartButton();
         //hits top/bottom border
         gameOver();
-        audioBackground.pause();
-        audioLoser.play();
         gameScore.innerHTML = "GAME OVER! Better luck next time. You can always play again 😃";
         clearInterval(gamePlay);
     }
@@ -127,7 +123,6 @@ function detectHit () {
         ball.x < paddle1.x + paddle1.width 
         && ball.y + ball.r > paddle1.y &&
         ball.y < paddle1.y + paddle1.height){
-            audioPaddles.play();
             if (ball.y > 27) {
                 ball.y = 27;
             }
@@ -138,7 +133,6 @@ function detectHit () {
     ball.x < paddle2.x + paddle2.width &&
     ball.y + ball.r > paddle2.y &&
     ball.y < paddle2.y + paddle2.height) {
-        audioPaddles.play();
          if (ball.y > 420) {
             ball.y = 420;
         }
@@ -173,7 +167,6 @@ const gameLoop = () => {
     moveTheBall();
     detectHit();
 }
-
 })
 
 
