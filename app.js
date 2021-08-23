@@ -8,10 +8,6 @@ let modalBg = document.querySelector(".modal-bg");
 let modalClose = document.querySelector(".modal-close");
 let gameplay;
 let button;
-// let audioPaddles = document.getElementById("audio");
-// let audioWinner = document.getElementById("audioWin");
-// let audioLoser = document.getElementById("audioLoser");
-// let audioBackground = document.getElementById("audioBackground");
 
 //DOM
 document.addEventListener("DOMContentLoaded", () => {
